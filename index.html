@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luigol — Engenharia de dados, Fullstack e Automação</title>
+  <meta name="description" content="Luigi Caldas (Luigol) — estudante de Engenharia da Computação na UFAL, engenheiro de dados na Alright (NexOS).">
+  <meta name="theme-color" content="#0E0E0E">
+  <link rel="preload" href="assets/fonts/poppins-light.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<header class="hero" data-animate>
+  <div class="hero__video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/video/poster.jpg">
+      <source src="assets/video/hero.webm" type="video/webm">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <img class="hero__photo" src="assets/img/luigol.webp" alt="Foto de Luigol" width="973" height="1400">
+  <div class="hero__fade" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Principal">
+    <a class="nav__brand" href="#">Luigol<span class="accent">.</span></a>
+    <div class="nav__actions">
+      <!-- TODO: coloque o link do seu perfil do GitHub -->
+      <a class="btn-icon" href="#" aria-label="GitHub" target="_blank" rel="noopener">
+        <img src="assets/img/github.png" alt="" width="22" height="22">
+      </a>
+      <!-- TODO: troque pelo contato que preferir (WhatsApp, LinkedIn…) -->
+      <a class="btn" href="mailto:luigicaldas07@gmail.com">Fale comigo</a>
+    </div>
+  </nav>
+
+  <div class="hero__content">
+    <div class="eyebrow reveal">
+      <span class="bar" aria-hidden="true"></span>
+      <span>Fullstack · Dados · Automação</span>
+    </div>
+    <p class="hero__lead reveal" style="--d:.15s">Estudante de Engenharia da Computação (UFAL)</p>
+  </div>
+
+  <a class="scroll-cue" href="#entregas">
+    <span class="scroll-cue__circle" aria-hidden="true">
+      <svg width="14" height="22" viewBox="0 0 18 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 2v22M2 17l7 7 7-7"/></svg>
+    </span>
+    <span class="scroll-cue__label">Role</span>
+  </a>
+</header>
+
+<main>
+
+<!-- =========================================================
+     O QUE EU ENTREGO
+     ========================================================= -->
+<section id="entregas" class="section" data-animate>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="bar" aria-hidden="true"></span>
+      <h2>O que eu entrego</h2>
+    </div>
+
+    <div class="rail rail--pulse">
+      <div class="rail__line" aria-hidden="true"><span class="rail__pulse"></span></div>
+      <ol class="rail__grid">
+        <li class="rail__item reveal" style="--d:.10s">
+          <span class="node node--ping" style="--ping:.45s" aria-hidden="true"></span>
+          <span class="idx">01</span>
+          <h3>Arquitetura de dados</h3>
+          <p>Arquiteturas e rotinas de atualização</p>
+          <ul class="tags"><li>GCP</li><li>BigQuery</li><li>ETL</li></ul>
+        </li>
+        <li class="rail__item reveal" style="--d:.22s">
+          <span class="node node--ping" style="--ping:1.4s" aria-hidden="true"></span>
+          <span class="idx">02</span>
+          <h3>Rotinas automáticas</h3>
+          <p>Planejo rotinas de atualização que mantêm os dados certos chegando no momento certo.</p>
+          <ul class="tags"><li>Cloud Functions</li><li>APIs REST</li></ul>
+        </li>
+        <li class="rail__item reveal" style="--d:.34s">
+          <span class="node node--ping" style="--ping:2.35s" aria-hidden="true"></span>
+          <span class="idx">03</span>
+          <h3>Backend &amp; Frontend</h3>
+          <p>Atuo nas duas pontas: da API que recebe os dados à interface que os apresenta.</p>
+          <ul class="tags"><li>Python</li><li>JavaScript</li><li>SQL</li></ul>
+        </li>
+        <li class="rail__item reveal" style="--d:.46s">
+          <span class="node node--ping" style="--ping:3.3s" aria-hidden="true"></span>
+          <span class="idx">04</span>
+          <h3>Visão computacional &amp; IA</h3>
+          <p>Na EJEFE, criei o Trocker com OpenCV e YOLO para analisar o desempenho de atletas.</p>
+          <ul class="tags"><li>OpenCV</li><li>YOLO</li><li>IA</li></ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     EMPRESAS (carrossel)
+     Para adicionar uma empresa: copie um <li class="marquee__item"> e troque a imagem.
+     O script repete a lista sozinho até preencher a faixa.
+     ========================================================= -->
+<section id="empresas" class="section section--marquee" data-animate>
+  <div class="wrap sec-row">
+    <div class="sec-head reveal">
+      <span class="bar" aria-hidden="true"></span>
+      <h2>Empresas que confiam no meu trabalho</h2>
+    </div>
+    <span class="pill reveal" style="--d:.1s">+ 500 Commits</span>
+  </div>
+
+  <div class="marquee" aria-label="Empresas">
+    <ul class="marquee__track">
+      <li class="marquee__item"><img src="assets/img/alright.png" alt="Alright" style="height:44px"></li>
+      <li class="marquee__item"><img src="assets/img/edge.png" alt="Edge" style="height:52px"></li>
+      <li class="marquee__item"><img src="assets/img/crb.svg" alt="CRB — Clube de Regatas Brasil" style="height:64px"></li>
+    </ul>
+  </div>
+</section>
+
+<!-- =========================================================
+     TRAJETÓRIA
+     ========================================================= -->
+<section id="trajetoria" class="section" data-animate>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="bar" aria-hidden="true"></span>
+      <h2>Trajetória</h2>
+    </div>
+
+    <div class="rail rail--draw">
+      <div class="rail__line" aria-hidden="true"><span class="rail__progress"></span></div>
+      <ol class="rail__grid">
+        <li class="rail__item reveal" style="--d:.3s">
+          <span class="node node--past" aria-hidden="true"></span>
+          <span class="date">fev 2025</span>
+          <div class="item-head">
+            <img class="logo-ic" src="assets/img/ic.png" alt="Instituto de Computação — UFAL" style="height:34px">
+            <h3>Instituto de Computação</h3>
+          </div>
+          <p>Ingressei em quinto lugar na ampla concorrência no curso de Engenharia da Computação da UFAL (Universidade Federal de Alagoas) em 2025.</p>
+        </li>
+        <li class="rail__item reveal" style="--d:.8s">
+          <span class="node node--past" aria-hidden="true"></span>
+          <span class="date">abr 2025</span>
+          <div class="item-head">
+            <h3>EJEFE</h3>
+          </div>
+          <p>Coordenador de Tecnologia da Empresa Júnior de Educação Física e Esportes da UFAL. Criei o Trocker: programa de visão computacional com OpenCV e YOLO aplicada ao desempenho de atletas de base do CRB (Clube de Regatas Brasil).</p>
+        </li>
+        <li class="rail__item reveal" style="--d:1.3s">
+          <span class="node node--now" aria-hidden="true"></span>
+          <span class="date">set 2025 — hoje</span>
+          <div class="item-head">
+            <img src="assets/img/alright.png" alt="Alright" style="height:30px">
+          </div>
+          <p>Engenheiro de Dados na NexOS, SaaS que une geomarketing, ciência de mídia e IA para mapear o mercado nos 5.571 municípios do Brasil.</p>
+        </li>
+        <li class="rail__item reveal" style="--d:1.8s">
+          <span class="node node--past" aria-hidden="true"></span>
+          <span class="date">2026</span>
+          <div class="item-head">
+            <img src="assets/img/edge.png" alt="Edge Academy" style="height:36px">
+          </div>
+          <p>Único calouro selecionado da turma de Engenharia da Computação no processo seletivo do Edge Academy voltado para o Instituto de Computação.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     HABILIDADES (abas)
+     ========================================================= -->
+<section id="habilidades" class="section" data-animate>
+  <div class="wrap">
+    <div class="sec-row reveal">
+      <div class="sec-head">
+        <span class="bar" aria-hidden="true"></span>
+        <h2>Habilidades</h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Habilidades">
+        <button class="tab" role="tab" id="tab-lang" aria-controls="panel-lang" aria-selected="true">Linguagens</button>
+        <button class="tab" role="tab" id="tab-data" aria-controls="panel-data" aria-selected="false" tabindex="-1">Estruturas de dados</button>
+        <button class="tab" role="tab" id="tab-logic" aria-controls="panel-logic" aria-selected="false" tabindex="-1">Lógica</button>
+      </div>
+    </div>
+
+    <!-- Linguagens -->
+    <div class="panel" role="tabpanel" id="panel-lang" aria-labelledby="tab-lang">
+      <div class="grid-4">
+        <article class="card reveal">
+          <div class="card__top"><h3>Python</h3><span class="mono muted">.py</span></div>
+          <p>Pipelines de dados, automação e backend.</p>
+          <pre class="code mono">ativos = [c for c in clientes
+         if c.status == "ok"]</pre>
+        </article>
+        <article class="card reveal" style="--d:.1s">
+          <div class="card__top"><h3>JavaScript</h3><span class="mono muted">.js</span></div>
+          <p>Interfaces e integrações com APIs.</p>
+          <pre class="code mono">const total = itens
+  .map(i =&gt; i.valor)
+  .reduce((a, b) =&gt; a + b, 0);</pre>
+        </article>
+        <article class="card reveal" style="--d:.2s">
+          <div class="card__top"><h3>C</h3><span class="mono muted">.c</span></div>
+          <p>Base de sistemas, memória e estruturas de dados.</p>
+          <pre class="code mono">typedef struct No {
+  int valor;
+  struct No *esq, *dir;
+} No;</pre>
+        </article>
+        <article class="card reveal" style="--d:.3s">
+          <div class="card__top"><h3>Haskell</h3><span class="mono muted">.hs</span></div>
+          <p>Programação funcional e recursão.</p>
+          <pre class="code mono">quicksort [] = []
+quicksort (p:xs) =
+  quicksort [x | x &lt;- xs, x &lt; p]
+  ++ [p] ++
+  quicksort [x | x &lt;- xs, x &gt;= p]</pre>
+        </article>
+      </div>
+    </div>
+
+    <!-- Estruturas de dados -->
+    <div class="panel" role="tabpanel" id="panel-data" aria-labelledby="tab-data" hidden>
+      <div class="grid-3">
+        <article class="card card--fixed reveal">
+          <h3>Árvore binária</h3>
+          <span class="mono muted">inserção · busca · percurso</span>
+          <svg class="tree" viewBox="0 0 320 200" role="img" aria-label="Árvore binária sendo montada nível a nível">
+            <g stroke="#333333" stroke-width="2">
+              <line class="te" x1="160" y1="30" x2="85" y2="95" style="animation-delay:.5s"/>
+              <line class="te" x1="160" y1="30" x2="235" y2="95" style="animation-delay:.5s"/>
+              <line class="te" x1="85" y1="95" x2="45" y2="165" style="animation-delay:1s"/>
+              <line class="te" x1="85" y1="95" x2="125" y2="165" style="animation-delay:1s"/>
+              <line class="te" x1="235" y1="95" x2="195" y2="165" style="animation-delay:1s"/>
+              <line class="te" x1="235" y1="95" x2="275" y2="165" style="animation-delay:1s"/>
+            </g>
+            <g font-size="14" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace, Menlo, monospace">
+              <g class="tn"><circle cx="160" cy="30" r="20" fill="#C21A1A"/><text x="160" y="30" fill="#FFFFFF">50</text></g>
+              <g class="tn" style="animation-delay:.5s"><circle cx="85" cy="95" r="20" fill="#161616" stroke="#F2F2F2" stroke-width="1.5"/><text x="85" y="95" fill="#F2F2F2">30</text></g>
+              <g class="tn" style="animation-delay:.5s"><circle cx="235" cy="95" r="20" fill="#161616" stroke="#F2F2F2" stroke-width="1.5"/><text x="235" y="95" fill="#F2F2F2">70</text></g>
+              <g class="tn" style="animation-delay:1s"><circle cx="45" cy="165" r="20" fill="#161616" stroke="#8F8F8F" stroke-width="1.5"/><text x="45" y="165" fill="#C8C8C8">20</text></g>
+              <g class="tn" style="animation-delay:1s"><circle cx="125" cy="165" r="20" fill="#161616" stroke="#8F8F8F" stroke-width="1.5"/><text x="125" y="165" fill="#C8C8C8">40</text></g>
+              <g class="tn" style="animation-delay:1s"><circle cx="195" cy="165" r="20" fill="#161616" stroke="#8F8F8F" stroke-width="1.5"/><text x="195" y="165" fill="#C8C8C8">60</text></g>
+              <g class="tn" style="animation-delay:1s"><circle cx="275" cy="165" r="20" fill="#161616" stroke="#8F8F8F" stroke-width="1.5"/><text x="275" y="165" fill="#C8C8C8">80</text></g>
+            </g>
+          </svg>
+        </article>
+
+        <article class="card card--fixed reveal" style="--d:.12s">
+          <h3>Pilha</h3>
+          <div class="stack-label mono muted">
+            <span class="lpush">push(9) · O(1)</span>
+            <span class="lpop">pop() → 9 · O(1)</span>
+          </div>
+          <div class="stack mono" aria-hidden="true">
+            <div class="stack__cell stack__cell--top push">9</div>
+            <div class="stack__cell">4</div>
+            <div class="stack__cell">7</div>
+            <div class="stack__cell">2</div>
+          </div>
+        </article>
+
+        <article class="card card--fixed reveal" style="--d:.24s">
+          <h3>Fila de prioridade</h3>
+          <span class="mono muted">extrai sempre o menor · O(log n)</span>
+          <div class="pq">
+            <div class="pq__window">
+              <div class="pq__row dq mono" aria-hidden="true">
+                <div class="pq__cell pq__cell--head dqhead">1</div>
+                <div class="pq__cell">3</div>
+                <div class="pq__cell">5</div>
+                <div class="pq__cell">8</div>
+                <div class="pq__cell">13</div>
+                <div class="pq__cell">21</div>
+              </div>
+            </div>
+            <span class="muted">← saída</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Lógica -->
+    <div class="panel" role="tabpanel" id="panel-logic" aria-labelledby="tab-logic" hidden>
+      <article class="card logic reveal">
+        <div class="logic__text">
+          <h3>Lógica de programação</h3>
+          <p>Decompor o problema, escolher a estrutura certa e medir o custo. Ao lado, uma busca binária encontrando o 23 em três passos.</p>
+          <span class="mono muted">busca binária · O(log n)</span>
+        </div>
+        <div class="bsearch mono" aria-hidden="true">
+          <div class="bs bs1">2</div><div class="bs bs1">5</div><div class="bs bs1">8</div>
+          <div class="bs bs1">12</div><div class="bs bs1">16</div><div class="bs bsf">23</div>
+          <div class="bs bs2">38</div><div class="bs bs2">56</div><div class="bs bs2">72</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
