@@ -17,8 +17,9 @@
 <header class="hero" data-animate>
   <div class="hero__video" aria-hidden="true">
     <video autoplay muted loop playsinline preload="auto" poster="assets/video/poster.jpg">
-      <source src="assets/video/hero.webm" type="video/webm">
+      <!-- MP4 first: iOS Safari picks WebM (VP9) when listed first and fails to autoplay it -->
       <source src="assets/video/hero.mp4" type="video/mp4">
+      <source src="assets/video/hero.webm" type="video/webm">
     </video>
   </div>
 
