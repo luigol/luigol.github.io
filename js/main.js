@@ -54,4 +54,13 @@
     video.pause();
     video.removeAttribute('autoplay');
   }
+
+  // ---------- 4. Footer e-mail ----------
+  // Build the address at runtime so it never appears in the HTML source.
+  // Without JS, the button keeps its LinkedIn fallback link.
+  document.querySelectorAll('[data-email-user]').forEach((el) => {
+    const email = el.dataset.emailUser + '@' + el.dataset.emailDomain;
+    if (el.tagName === 'A') el.href = 'mailto:' + email;
+    else el.textContent = email;
+  });
 })();

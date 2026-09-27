@@ -31,6 +31,7 @@ Depois abra http://localhost:8000. Abrir o `index.html` direto também funciona,
 - **Nova área em Habilidades:** copie um `<li class="skill">` no `index.html`. Use `skill__level--daily` para o ponto vermelho (dia a dia).
 - **Cores:** variáveis no topo do `css/style.css` (`--red`, `--bg` etc.).
 - **Velocidade do carrossel:** `PX_POR_SEGUNDO` no `js/main.js`.
+- **Cache:** ao mudar `css/style.css` ou `js/main.js`, aumente o `?v=` no `index.html` (ex.: `?v=2` → `?v=3`) para os visitantes baixarem a versão nova.
 
 ## Publicar
 

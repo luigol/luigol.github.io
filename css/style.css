@@ -52,6 +52,23 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .bar { display: block; width: 40px; height: 3px; background: var(--red); }
 
 /* ---------- botões ---------- */
+.btn {
+  font-size: 15px; text-decoration: none;
+  padding: 12px 24px; min-height: 46px;
+  display: inline-flex; align-items: center;
+  border: 1px solid rgba(242,242,242,.45); border-radius: 999px;
+  transition: background .25s, border-color .25s;
+}
+.btn:hover { border-color: var(--text); background: rgba(242,242,242,.06); }
+/* same hover as the skill chips */
+.btn--ghost {
+  background: rgba(242,242,242,.03); border-color: var(--line-2); color: var(--soft);
+  transition: color .2s, border-color .2s, background .2s, transform .2s;
+}
+.btn--ghost:hover {
+  color: var(--text); border-color: var(--red);
+  background: rgba(194,26,26,.12); transform: translateY(-2px);
+}
 .btn-icon {
   width: 46px; height: 46px; border-radius: 50%;
   border: 1px solid rgba(242,242,242,.45);
@@ -198,6 +215,26 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   color: var(--text); border-color: var(--red);
   background: rgba(194,26,26,.12); transform: translateY(-2px);
 }
+
+/* ---------- footer ---------- */
+.footer { border-top: 1px solid var(--line); padding: clamp(72px, 9vw, 112px) 0 32px; }
+.footer__cta { display: flex; flex-direction: column; gap: 24px; max-width: 960px; }
+.footer__cta h2 { font-size: clamp(34px, 4vw, 56px); }
+.footer__contact { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+.footer__email { font-size: 15px; color: var(--muted); }
+.footer__links {
+  display: flex; gap: 12px 40px; flex-wrap: wrap;
+  margin-top: clamp(56px, 7vw, 88px); padding-top: 32px; border-top: 1px solid var(--line);
+}
+.footer__links a { font-size: 18px; text-decoration: none; color: var(--soft); transition: color .2s; }
+.footer__links a:hover { color: var(--text); }
+.footer__links a span { color: var(--red); }
+.footer__bottom {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  margin-top: 48px; font-size: 13px; color: var(--muted);
+}
+.footer__bottom a { color: var(--muted); text-decoration: none; }
+.footer__bottom a:hover { color: var(--text); }
 
 /* =========================================================
    ANIMAÇÕES

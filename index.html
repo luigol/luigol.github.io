@@ -7,7 +7,7 @@
   <meta name="description" content="Luigi Caldas (Luigol) — estudante de Engenharia da Computação na UFAL, engenheiro de dados na Alright (NexOS).">
   <meta name="theme-color" content="#0E0E0E">
   <link rel="preload" href="assets/fonts/poppins-light.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
@@ -222,6 +222,37 @@
 
 </main>
 
-<script src="js/main.js" defer></script>
+<!-- =========================================================
+     FOOTER
+     The e-mail is split across data attributes and assembled by
+     js/main.js, so scrapers reading the raw HTML don't find it.
+     ========================================================= -->
+<footer class="footer" data-animate>
+  <div class="wrap">
+    <div class="footer__cta">
+      <div class="sec-head reveal">
+        <span class="bar" aria-hidden="true"></span>
+        <h2>Vamos construir algo juntos?</h2>
+      </div>
+      <div class="footer__contact reveal" style="--d:.1s">
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/luigol" data-email-user="luigicaldas07" data-email-domain="gmail.com">Fale comigo</a>
+        <span class="footer__email" data-email-user="luigicaldas07" data-email-domain="gmail.com"></span>
+      </div>
+    </div>
+
+    <ul class="footer__links reveal" style="--d:.2s">
+      <li><a href="https://www.linkedin.com/in/luigol" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
+      <li><a href="https://github.com/luigol" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
+      <li><a href="https://www.youtube.com/@oluigol" target="_blank" rel="noopener">YouTube <span aria-hidden="true">↗</span></a></li>
+    </ul>
+
+    <div class="footer__bottom">
+      <span>© 2026 Luigol<span class="accent">.</span></span>
+      <a href="#">Voltar ao topo <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js?v=2" defer></script>
 </body>
 </html>
