@@ -52,14 +52,6 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .bar { display: block; width: 40px; height: 3px; background: var(--red); }
 
 /* ---------- botões ---------- */
-.btn {
-  font-size: 15px; text-decoration: none;
-  padding: 12px 24px; min-height: 46px;
-  display: inline-flex; align-items: center;
-  border: 1px solid rgba(242,242,242,.45); border-radius: 999px;
-  transition: background .25s, border-color .25s;
-}
-.btn:hover { border-color: var(--text); background: rgba(242,242,242,.06); }
 .btn-icon {
   width: 46px; height: 46px; border-radius: 50%;
   border: 1px solid rgba(242,242,242,.45);
@@ -248,7 +240,6 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   .hero__photo { right: 50%; transform: translateX(50%); height: 72%; }
   .hero__fade { height: 55%; }
   .hero__content { padding-bottom: 120px; }
-  .nav .btn { padding: 10px 18px; }
 
   /* trilho vira vertical */
   .rail__grid { grid-template-columns: 1fr; row-gap: 48px; }

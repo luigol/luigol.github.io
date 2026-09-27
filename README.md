@@ -32,11 +32,6 @@ Depois abra http://localhost:8000. Abrir o `index.html` direto também funciona,
 - **Cores:** variáveis no topo do `css/style.css` (`--red`, `--bg` etc.).
 - **Velocidade do carrossel:** `PX_POR_SEGUNDO` no `js/main.js`.
 
-## Pendências
-
-- [ ] Link do GitHub no topo (procure `TODO` no `index.html`).
-- [ ] Botão "Fale comigo": hoje abre um e-mail; troque se preferir WhatsApp ou LinkedIn.
-
 ## Publicar
 
 Suba a pasta no GitHub Pages, Netlify ou Vercel. Não há build: é só publicar os arquivos como estão.
