@@ -73,10 +73,16 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   width: 46px; height: 46px; border-radius: 50%;
   border: 1px solid rgba(242,242,242,.45);
   display: inline-flex; align-items: center; justify-content: center;
-  transition: border-color .25s;
+  color: var(--soft); background: rgba(14,14,14,.35);
+  transition: color .2s, border-color .2s, background .2s, transform .2s;
 }
-.btn-icon:hover { border-color: var(--text); }
-.btn-icon img { width: 22px; height: 22px; display: block; }
+/* same hover as the skill chips */
+.btn-icon:hover {
+  color: var(--text); border-color: var(--red);
+  background: rgba(194,26,26,.12); transform: translateY(-2px);
+}
+.btn-icon .icon { width: 20px; height: 20px; }
+.icon { display: block; flex-shrink: 0; }
 
 /* =========================================================
    HERO
@@ -226,8 +232,13 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   display: flex; gap: 12px 40px; flex-wrap: wrap;
   margin-top: clamp(56px, 7vw, 88px); padding-top: 32px; border-top: 1px solid var(--line);
 }
-.footer__links a { font-size: 18px; text-decoration: none; color: var(--soft); transition: color .2s; }
+.footer__links a {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 18px; text-decoration: none; color: var(--soft); transition: color .2s;
+}
 .footer__links a:hover { color: var(--text); }
+.footer__links .icon { width: 18px; height: 18px; color: var(--muted); transition: color .2s; }
+.footer__links a:hover .icon { color: var(--red); }
 .footer__links a span { color: var(--red); }
 .footer__bottom {
   display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
