@@ -47,26 +47,7 @@
     imgs.forEach((img) => (img.complete ? done() : (img.addEventListener('load', done), img.addEventListener('error', done))));
   }
 
-  // ---------- 3. Abas de habilidades ----------
-  const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-  const select = (tab) => {
-    tabs.forEach((t) => {
-      const on = t === tab;
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-    });
-    tab.focus();
-  };
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => select(tab));
-    tab.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') select(tabs[(i + 1) % tabs.length]);
-      if (e.key === 'ArrowLeft') select(tabs[(i - 1 + tabs.length) % tabs.length]);
-    });
-  });
-
-  // ---------- 4. Vídeo do hero ----------
+  // ---------- 3. Vídeo do hero ----------
   // Se o navegador bloquear o autoplay, a imagem de capa continua aparecendo.
   const video = document.querySelector('.hero__video video');
   if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
