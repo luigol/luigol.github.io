@@ -55,7 +55,40 @@
     video.removeAttribute('autoplay');
   }
 
-  // ---------- 4. Footer e-mail ----------
+  // ---------- 4. Chips de habilidades ----------
+  // Clicar num chip mostra o data-desc dele abaixo dos chips da área.
+  // Só um chip fica ativo na página; clicar no ativo de novo fecha.
+  const chips = document.querySelectorAll('.skill .tags li[data-desc]');
+  let active = null;
+  const close = (chip) => {
+    chip.classList.remove('is-active');
+    chip.setAttribute('aria-pressed', 'false');
+    chip.closest('.skill__body').querySelector('.skill__desc').classList.remove('is-open');
+  };
+  const toggle = (chip) => {
+    const wasActive = chip === active;
+    if (active) close(active);
+    active = null;
+    if (wasActive) return;
+    const desc = chip.closest('.skill__body').querySelector('.skill__desc');
+    desc.innerHTML = '<span></span>';
+    desc.firstChild.textContent = chip.dataset.desc;
+    desc.classList.add('is-open');
+    chip.classList.add('is-active');
+    chip.setAttribute('aria-pressed', 'true');
+    active = chip;
+  };
+  chips.forEach((chip) => {
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('tabindex', '0');
+    chip.setAttribute('aria-pressed', 'false');
+    chip.addEventListener('click', () => toggle(chip));
+    chip.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(chip); }
+    });
+  });
+
+  // ---------- 5. Footer e-mail ----------
   // Build the address at runtime so it never appears in the HTML source.
   // Without JS, the button keeps its LinkedIn fallback link.
   document.querySelectorAll('[data-email-user]').forEach((el) => {

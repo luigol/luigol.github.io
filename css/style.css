@@ -217,10 +217,21 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   font-size: 14px; padding: 8px 14px; cursor: default;
   transition: color .2s, border-color .2s, background .2s, transform .2s;
 }
-.skill .tags li:hover {
+.skill .tags li:hover,
+.skill .tags li.is-active {
   color: var(--text); border-color: var(--red);
   background: rgba(194,26,26,.12); transform: translateY(-2px);
 }
+.js .skill .tags li { cursor: pointer; }
+.skill .tags li:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+/* one-line description under the chips; grows from 0 height when open */
+.skill__desc {
+  display: grid; grid-template-rows: 0fr; opacity: 0;
+  margin: 0; font-size: 13px; color: var(--muted);
+  transition: grid-template-rows .3s ease, opacity .3s ease, margin-top .3s ease;
+}
+.skill__desc > span { overflow: hidden; }
+.skill__desc.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: 14px; }
 
 /* ---------- footer ---------- */
 .footer { border-top: 1px solid var(--line); padding: clamp(72px, 9vw, 112px) 0 32px; }
