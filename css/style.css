@@ -154,6 +154,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   background: var(--line); overflow: hidden;
 }
 .rail__grid { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+.rail__grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 32px; }
 .rail__item { display: flex; flex-direction: column; gap: 16px; }
 .rail__item h3 { font-size: 26px; line-height: 1.15; }
 .rail__item p { font-size: 16px; line-height: 1.55; color: var(--soft); }
@@ -289,7 +290,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
    RESPONSIVO
    ========================================================= */
 @media (max-width: 1100px) {
-  .rail__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 56px; }
+  .rail__grid, .rail__grid--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 56px; }
   .rail__line { display: none; }
   .skill { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 24px; }
 }
@@ -301,7 +302,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   .hero__content { padding-bottom: 120px; }
 
   /* trilho vira vertical */
-  .rail__grid { grid-template-columns: 1fr; row-gap: 48px; }
+  .rail__grid, .rail__grid--5 { grid-template-columns: 1fr; row-gap: 48px; }
   .rail__grid { padding-left: 36px; }
   .rail__line {
     display: block; top: 8px; bottom: 0; left: 7px; right: auto; width: 2px; height: auto;
