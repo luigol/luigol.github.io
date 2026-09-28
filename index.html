@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0E0E0E">
   <link rel="preload" href="assets/fonts/poppins-light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -180,6 +180,7 @@
      SKILLS (stack by area)
      To add an area: copy a <li class="skill"> and edit it.
      Level: skill__level--daily (red dot) or plain (grey dot).
+     Chips: data-desc is the one-line text shown below them on click.
      ========================================================= -->
 <section id="habilidades" class="section" data-animate>
   <div class="wrap">
@@ -194,35 +195,50 @@
           <h3>Dados &amp; Cloud</h3>
           <span class="skill__level skill__level--daily">Dia a dia</span>
         </div>
-        <ul class="tags"><li>GCP</li><li>BigQuery</li><li>Cloud Functions</li><li>ETL</li></ul>
+        <div class="skill__body">
+          <ul class="tags"><li data-desc="Google Cloud Platform">GCP</li><li data-desc="Data warehouse do Google para consultas SQL em grande escala">BigQuery</li><li data-desc="Funções serverless que rodam sob demanda no GCP">Cloud Functions</li><li data-desc="Extract, Transform, Load: extrair, transformar e carregar dados">ETL</li></ul>
+          <p class="skill__desc" aria-live="polite"></p>
+        </div>
       </li>
       <li class="skill reveal" style="--d:.18s">
         <div class="skill__head">
           <h3>Backend</h3>
           <span class="skill__level skill__level--daily">Dia a dia</span>
         </div>
-        <ul class="tags"><li>Python</li><li>SQL</li><li>APIs REST</li></ul>
+        <div class="skill__body">
+          <ul class="tags"><li data-desc="Linguagem para automação, dados e backend">Python</li><li data-desc="Structured Query Language: consultas a bancos de dados relacionais">SQL</li><li data-desc="Interfaces HTTP para sistemas trocarem dados">APIs REST</li></ul>
+          <p class="skill__desc" aria-live="polite"></p>
+        </div>
       </li>
       <li class="skill reveal" style="--d:.26s">
         <div class="skill__head">
           <h3>Frontend</h3>
           <span class="skill__level skill__level--daily">Dia a dia</span>
         </div>
-        <ul class="tags"><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+        <div class="skill__body">
+          <ul class="tags"><li data-desc="Linguagem que dá interatividade às páginas web">JavaScript</li><li data-desc="HyperText Markup Language: a estrutura das páginas web">HTML</li><li data-desc="Cascading Style Sheets: o visual e o layout das páginas web">CSS</li></ul>
+          <p class="skill__desc" aria-live="polite"></p>
+        </div>
       </li>
       <li class="skill reveal" style="--d:.34s">
         <div class="skill__head">
           <h3>IA &amp; Visão Computacional</h3>
           <span class="skill__level">Em projeto</span>
         </div>
-        <ul class="tags"><li>OpenCV</li><li>YOLO</li></ul>
+        <div class="skill__body">
+          <ul class="tags"><li data-desc="Open Source Computer Vision: biblioteca de visão computacional">OpenCV</li><li data-desc="You Only Look Once: detecção de objetos em tempo real">YOLO</li></ul>
+          <p class="skill__desc" aria-live="polite"></p>
+        </div>
       </li>
       <li class="skill reveal" style="--d:.42s">
         <div class="skill__head">
           <h3>Fundamentos</h3>
           <span class="skill__level">Faculdade</span>
         </div>
-        <ul class="tags"><li>C</li><li>Haskell</li><li>Estruturas de dados</li><li>Lógica</li></ul>
+        <div class="skill__body">
+          <ul class="tags"><li data-desc="Linguagem de baixo nível, base de sistemas operacionais">C</li><li data-desc="Linguagem funcional pura e fortemente tipada">Haskell</li><li data-desc="Listas, pilhas, filas, árvores e grafos">Estruturas de dados</li><li data-desc="Raciocínio formal por trás dos algoritmos">Lógica</li></ul>
+          <p class="skill__desc" aria-live="polite"></p>
+        </div>
       </li>
     </ul>
   </div>
@@ -261,6 +277,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=3" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>
