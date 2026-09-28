@@ -194,7 +194,11 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .marquee::before { left: 0; background: linear-gradient(to right, var(--bg), rgba(14,14,14,0)); }
 .marquee::after { right: 0; background: linear-gradient(to left, var(--bg), rgba(14,14,14,0)); }
 .marquee__track { display: flex; width: max-content; animation: marquee var(--marquee-duration, 30s) linear infinite; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
+/* pause on hover only with a real pointer: on touch screens :hover sticks
+   after a tap or scroll and would freeze the carousel for good */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+}
 .marquee__item { height: 120px; display: flex; align-items: center; gap: 80px; padding-right: 80px; }
 .marquee__item img { width: auto; opacity: .75; display: block; }
 .marquee__item::after { content: ''; width: 8px; height: 8px; background: var(--red); transform: rotate(45deg); flex-shrink: 0; }
