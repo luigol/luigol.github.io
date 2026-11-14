@@ -60,7 +60,7 @@
         copy.setAttribute('aria-hidden', 'true');
         track.appendChild(copy);
       });
-      const PX_POR_SEGUNDO = 50; // velocidade do carrossel
+      const PX_POR_SEGUNDO = 70; // velocidade do carrossel
       track.style.setProperty('--marquee-duration', (track.scrollWidth / 2 / PX_POR_SEGUNDO) + 's');
     };
     // espera as imagens carregarem para medir a largura certa
