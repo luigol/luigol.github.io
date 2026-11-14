@@ -71,13 +71,7 @@
     imgs.forEach((img) => (img.complete ? done() : (img.addEventListener('load', done), img.addEventListener('error', done))));
   }
 
-  // ---------- 3. Vídeo do hero ----------
-  // Se o navegador bloquear o autoplay, a imagem de capa continua aparecendo.
-  const video = document.querySelector('.hero__video video');
-  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    video.pause();
-    video.removeAttribute('autoplay');
-  }
+  // (3. The hero background now lives in js/hero-spheres.js)
 
   // ---------- 4. Chips de habilidades ----------
   // Clicar num chip mostra o data-desc dele abaixo dos chips da área.

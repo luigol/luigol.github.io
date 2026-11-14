@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0E0E0E">
   <link rel="preload" href="assets/fonts/poppins-light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
 
@@ -23,12 +23,10 @@
      HERO
      ========================================================= -->
 <header class="hero" data-animate>
+  <!-- Spheres drawn live by js/hero-spheres.js (WebGL2); the poster set in
+       the CSS shows through if WebGL2 is not available -->
   <div class="hero__video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" poster="assets/video/poster.jpg">
-      <!-- MP4 first: iOS Safari picks WebM (VP9) when listed first and fails to autoplay it -->
-      <source src="assets/video/hero.mp4" type="video/mp4">
-      <source src="assets/video/hero.webm" type="video/webm">
-    </video>
+    <canvas></canvas>
   </div>
 
   <img class="hero__photo" src="assets/img/luigol.webp" alt="Foto de Luigol" width="973" height="1400">
@@ -299,6 +297,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=6" defer></script>
+<script src="js/hero-spheres.js?v=1" defer></script>
+<script src="js/main.js?v=7" defer></script>
 </body>
 </html>

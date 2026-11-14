@@ -105,7 +105,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   pointer-events: none;
   background: url('../assets/video/poster.jpg') center / cover no-repeat;
 }
-.hero__video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero__video canvas { width: 100%; height: 100%; display: block; }
 .hero__photo {
   position: absolute; bottom: 0;
   right: clamp(0px, 7vw, 100px);
@@ -367,7 +367,6 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal { opacity: 1; }
   .rail__progress { transform: none; }
-  .hero__video video { visibility: hidden; }
   .words > span:first-child { opacity: 1; transform: none; }
   .slide-word > span { transform: none; }
 }

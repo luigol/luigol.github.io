@@ -8,9 +8,10 @@ Site estático: HTML, CSS e JavaScript puros, sem dependências.
 index.html        ← todos os textos (é aqui que você edita o conteúdo)
 css/style.css     ← cores, fontes, layout, animações e versão mobile
 js/main.js        ← animação ao rolar e carrossel
+js/hero-spheres.js ← fundo do hero: 3 esferas desenhadas ao vivo (WebGL2)
 assets/
   img/            ← foto e logos
-  video/          ← vídeo do hero (webm + mp4) e imagem de capa
+  video/          ← imagem de capa (aparece se o navegador não tiver WebGL2)
   fonts/          ← Poppins Light (SIL Open Font License)
 ```
 
@@ -22,7 +23,7 @@ Na pasta do projeto:
 python -m http.server 8000
 ```
 
-Depois abra http://localhost:8000. Abrir o `index.html` direto também funciona, mas o vídeo pode não rodar em alguns navegadores.
+Depois abra http://localhost:8000. Abrir o `index.html` direto também funciona.
 
 ## Editar
 
