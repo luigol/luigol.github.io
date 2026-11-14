@@ -45,6 +45,52 @@
     sections.forEach((s) => s.classList.add('is-visible'));
   }
 
+  // ---------- 1b. Scroll-driven rails ----------
+  // The red line grows as the user scrolls and each node lights up when the
+  // line reaches it. Scrolling back up undoes it.
+  // - Vertical line (phone): its tip follows a fixed height on screen (ANCHOR).
+  // - Horizontal line (desktop): it fills while the rail crosses from 85% to
+  //   40% of the screen height.
+  // - No line (tablet): each node lights up when it passes ANCHOR.
+  const rails = document.querySelectorAll('.rail--scroll');
+  if (rails.length) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const clamp = (v) => Math.max(0, Math.min(1, v));
+    const update = () => {
+      const vh = window.innerHeight;
+      const ANCHOR = vh * 0.65;
+      rails.forEach((rail) => {
+        const lr = rail.querySelector('.rail__line').getBoundingClientRect();
+        const nodes = rail.querySelectorAll('.node');
+        const hasLine = lr.width > 0 && lr.height > 0;
+        const vertical = lr.height > lr.width;
+        let p;
+        if (reduce) p = 1;
+        else if (vertical) p = (ANCHOR - lr.top) / lr.height;
+        else p = (vh * 0.85 - rail.getBoundingClientRect().top) / (vh * 0.45);
+        p = clamp(p);
+        rail.style.setProperty('--p', p.toFixed(4));
+        nodes.forEach((node) => {
+          const nr = node.getBoundingClientRect();
+          let on;
+          if (reduce) on = true;
+          else if (hasLine && !vertical) on = p >= (nr.left + nr.width / 2 - lr.left) / lr.width;
+          else on = nr.top + nr.height / 2 <= ANCHOR;
+          node.classList.toggle('is-on', on);
+        });
+      });
+    };
+    let queued = false;
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => { queued = false; update(); });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  }
+
   // ---------- 2. Carrossel de empresas ----------
   // Repete os logos até preencher a faixa e duplica o conjunto
   // para o loop (translateX -50%) não ter emenda.

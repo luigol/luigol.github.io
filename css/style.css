@@ -190,19 +190,22 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tags li { font-size: 12px; padding: 5px 10px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--soft); }
 
-.node { display: block; width: 16px; height: 16px; border-radius: 50%; }
+.node {
+  display: block; width: 16px; height: 16px; border-radius: 50%;
+  transition: background .35s, border-color .35s, box-shadow .35s;
+}
 .node--ping { background: var(--line-2); }
 .node--past { background: var(--bg); border: 2px solid var(--red); }
 .node--now { background: var(--red); }
 
-.rail__pulse {
-  position: absolute; top: 0; left: -180px; width: 180px; height: 2px;
-  background: linear-gradient(90deg, rgba(194,26,26,0), var(--red));
-}
+/* scroll-driven rail: js/main.js sets --p (0..1) on the rail as the user
+   scrolls and adds .is-on to each node the red line has reached */
 .rail__progress {
   position: absolute; inset: 0; background: var(--red);
-  transform: scaleX(0); transform-origin: left center;
+  transform: scaleX(var(--p, 0)); transform-origin: left center;
 }
+.js .rail--scroll .node:not(.is-on) { background: var(--line-2); border-color: var(--line-2); }
+.node--ping.is-on { background: var(--red); box-shadow: 0 0 0 6px rgba(194,26,26,.18); }
 
 /* ---------- carrossel ---------- */
 .section--marquee { padding-bottom: clamp(72px, 9vw, 88px); }
@@ -294,15 +297,6 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
    ========================================================= */
 @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@keyframes flow { from { left: -180px; } to { left: 100%; } }
-@keyframes ping {
-  0% { background: #333333; box-shadow: 0 0 0 0 rgba(194,26,26,0); }
-  6% { background: #C21A1A; box-shadow: 0 0 0 8px rgba(194,26,26,.28); }
-  35% { background: #C21A1A; box-shadow: 0 0 0 0 rgba(194,26,26,0); }
-  70%, 100% { background: #333333; }
-}
-@keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@keyframes drawY { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes halo { 0% { box-shadow: 0 0 0 0 rgba(194,26,26,.55); } 100% { box-shadow: 0 0 0 18px rgba(194,26,26,0); } }
 @keyframes slide-up { from { transform: translateY(110%); } to { transform: none; } }
 /* one word's slot is 25% of the loop (4 words): enter, hold, leave upwards */
@@ -318,10 +312,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   animation: slide-up .8s cubic-bezier(.2,.7,.2,1) calc(var(--d, 0s) + .1s + var(--w) * 70ms) both;
 }
 
-.rail__pulse { animation: flow 4s linear infinite; }
-.node--ping { animation: ping 4s linear var(--ping, 0s) infinite; }
-.node--now { animation: halo 1.8s ease-out infinite; }
-.is-visible .rail__progress { animation: draw 2.2s cubic-bezier(.6,0,.2,1) .3s both; }
+.node--now.is-on { animation: halo 1.8s ease-out infinite; }
 
 
 /* =========================================================
@@ -346,9 +337,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   .rail__line {
     display: block; top: 8px; bottom: 0; left: 7px; right: auto; width: 2px; height: auto;
   }
-  .rail__pulse { display: none; }
-  .rail__progress { transform: scaleY(0); transform-origin: top center; }
-  .is-visible .rail__progress { animation-name: drawY; }
+  .rail__progress { transform: scaleY(var(--p, 0)); transform-origin: top center; }
   .rail__item { position: relative; }
   .rail__item .node { position: absolute; left: -36px; top: 2px; }
 
@@ -363,7 +352,6 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal { opacity: 1; }
-  .rail__progress { transform: none; }
   .words > span:first-child { opacity: 1; transform: none; }
   .slide-word > span { transform: none; }
 }
