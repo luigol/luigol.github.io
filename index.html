@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0E0E0E">
   <link rel="preload" href="assets/fonts/poppins-light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -48,7 +48,12 @@
       <span class="bar" aria-hidden="true"></span>
       <span>Fullstack · Dados · Automação</span>
     </div>
-    <p class="hero__lead reveal" style="--d:.15s">Resolvo problemas com tecnologia: de dados a software, de automações a IA.</p>
+    <!-- Rotating words: based on Spell UI Text Marquee (MIT) - github.com/xxtomm/spell-ui.
+         To change the words, edit the spans and keep --i in order; 4 words fit the keyframes. -->
+    <p class="hero__lead reveal" style="--d:.15s">Resolvo problemas com
+      <span class="words" aria-hidden="true"><span style="--i:0">dados</span><span style="--i:1">software</span><span style="--i:2">automações</span><span style="--i:3">IA</span></span>
+      <span class="sr-only">dados, software, automações e IA</span>
+    </p>
   </div>
 
   <a class="scroll-cue" href="#entregas">
