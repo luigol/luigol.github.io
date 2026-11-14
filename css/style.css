@@ -137,7 +137,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
    cell, so the box is as wide as the longest one; each word runs the same loop,
    shifted by a negative delay so only one is on screen at a time */
 .words {
-  --n: 4; --step: 2.6s;
+  --n: 4; --step: 2s;
   display: inline-grid; vertical-align: bottom; overflow: hidden; color: var(--text);
   -webkit-mask-image: linear-gradient(transparent, #000 15%, #000 85%, transparent);
           mask-image: linear-gradient(transparent, #000 15%, #000 85%, transparent);
