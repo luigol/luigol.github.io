@@ -52,7 +52,9 @@
       // another sphere it lights up even on its dark side (the lens edge)
       float inOther = 0.;
       for (int j = 0; j < 3; j++) if (j != i) inOther = max(inOther, ins[j]);
-      I += 1.5 * max(lit[i], .85 * inOther) * exp(-pow(sd[i] / 1.6, 2.));
+      // width floor in device px so the line stays crisp when the camera pulls back
+      float rw = max(1.6, 1.3 / u_scale);
+      I += 1.5 * max(lit[i], .85 * inOther) * exp(-pow(sd[i] / rw, 2.));
     }
     for (int i = 0; i < 3; i++) {
       // fills vanish where another sphere overlaps
@@ -135,6 +137,22 @@
       (-p0 + 3 * p1 - 3 * p2 + p3) * f * f * f);
   };
 
+  // ---------- camera ----------
+  // Wide screens: cover fit of the 1600x900 scene, as the video was.
+  // Narrow screens (phones): cover would show only a thin central slice, so
+  // the camera pulls back until the whole group of spheres fits the width
+  // (allowing a slight crop at the edges), and keeps the group near the top
+  // so the bottom sphere is not lost under the hero fade.
+  // The 3 spheres sweep x = 248..1376 and y = -372..1388 over the loop.
+  const GROUP_W = 1128;
+  const EDGE_CROP = 0.85;     // fraction of the group width that must fit
+  const TOP_GAP = 80;         // video px between the screen top and the group
+  const camera = (w, h) => {
+    const scale = Math.min(Math.max(w / 1600, h / 900), w / (GROUP_W * EDGE_CROP));
+    const halfH = h / 2 / scale;
+    return { scale, x: 800, y: Math.max(450, halfH - 372 - TOP_GAP) };
+  };
+
   // ---------- mouse: spheres drift gently away from the cursor ----------
   const PUSH = 70;            // max push, in video px
   const EASE = 0.04;          // how fast a sphere follows / drifts back (per frame)
@@ -143,8 +161,11 @@
     window.addEventListener('pointermove', (e) => {
       const b = canvas.getBoundingClientRect();
       if (e.clientY > b.bottom) { mouse = null; return; }
-      const sc = Math.max(b.width / 1600, b.height / 900);
-      mouse = { x: (e.clientX - b.left - b.width / 2) / sc, y: -(e.clientY - b.top - b.height / 2) / sc };
+      const cam = camera(b.width, b.height);
+      mouse = {
+        x: (e.clientX - b.left - b.width / 2) / cam.scale,
+        y: -(e.clientY - b.top - b.height / 2) / cam.scale,
+      };
     }, { passive: true });
     document.addEventListener('pointerleave', () => { mouse = null; });
   }
@@ -162,9 +183,10 @@
   const draw = () => {
     resize();
     const tau = t % 16, s = tau <= 8 ? tau : 16 - tau;
-    const scale = Math.max(canvas.width / 1600, canvas.height / 900);
+    const cam = camera(canvas.width, canvas.height);
     KEYS.forEach((k, i) => {
-      const cx = spline(k.x, s) - 800, cy = 450 - spline(k.y, s), r = spline(k.r, s);
+      // positions relative to the camera center, y up
+      const cx = spline(k.x, s) - cam.x, cy = cam.y - spline(k.y, s), r = spline(k.r, s);
       let tx = 0, ty = 0;
       if (mouse) {
         const dx = cx - mouse.x, dy = cy - mouse.y, d = Math.hypot(dx, dy) || 1e-4;
@@ -175,18 +197,20 @@
       offset[i].y += (ty - offset[i].y) * EASE;
       S[i * 3] = cx + offset[i].x; S[i * 3 + 1] = cy + offset[i].y; S[i * 3 + 2] = r;
     });
-    // light: the middle sphere is lit from below; top and bottom face the frame center
+    // light: the middle sphere is lit from below; top and bottom face the
+    // scene center (800, 450), wherever the camera is
+    const scx = 800 - cam.x, scy = cam.y - 450;
     for (let i = 0; i < 3; i++) {
       let lx = 0, ly = -1;
       if (i !== 1) {
-        lx = -S[i * 3]; ly = -S[i * 3 + 1];
+        lx = scx - S[i * 3]; ly = scy - S[i * 3 + 1];
         const m = Math.hypot(lx, ly) || 1; lx /= m; ly /= m;
       }
       Ld[i * 2] = lx; Ld[i * 2 + 1] = ly;
     }
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.uniform1f(uScale, scale);
+    gl.uniform1f(uScale, cam.scale);
     gl.uniform3fv(uS, S);
     gl.uniform2fv(uL, Ld);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
