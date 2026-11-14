@@ -170,6 +170,55 @@
     document.addEventListener('pointerleave', () => { mouse = null; });
   }
 
+  // ---------- touch: same push, following the finger ----------
+  // Passive listeners, so scrolling is never blocked. Spheres are smaller on
+  // phones (the camera pulls back), so the push is stronger in video px.
+  const PUSH_TOUCH = 150;
+  let push = PUSH;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    push = PUSH_TOUCH;
+    const onTouch = (e) => {
+      const p = e.touches[0], b = canvas.getBoundingClientRect();
+      if (!p || p.clientY < b.top || p.clientY > b.bottom) { mouse = null; return; }
+      const cam = camera(b.width, b.height);
+      mouse = {
+        x: (p.clientX - b.left - b.width / 2) / cam.scale,
+        y: -(p.clientY - b.top - b.height / 2) / cam.scale,
+      };
+    };
+    window.addEventListener('touchstart', onTouch, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    window.addEventListener('touchend', () => { mouse = null; }, { passive: true });
+    window.addEventListener('touchcancel', () => { mouse = null; }, { passive: true });
+  }
+
+  // ---------- tilt: spheres slide as the phone tilts (parallax) ----------
+  // Permission is never requested: Android delivers the events right away,
+  // while iOS Safari sends none until requestPermission() is called, so
+  // iPhones simply get touch only and never see a prompt. (Checking for
+  // requestPermission does not work: recent Chrome has it too.)
+  // The rest angle follows the way the phone is held, so only changes count.
+  const TILT_MAX = 25;                 // degrees that give the full shift
+  const TILT_SHIFT = 110;              // full shift, in video px
+  const DEPTH = [1, 0.55, 0.8];        // per sphere: different depths = parallax
+  const tilt = { x: 0, y: 0 };
+  if (push === PUSH_TOUCH && 'DeviceOrientationEvent' in window) {
+    let rest = null;
+    window.addEventListener('deviceorientation', (e) => {
+      if (e.beta == null || e.gamma == null) return;     // no real sensor
+      // map to screen axes when the phone is held sideways
+      const a = (screen.orientation && screen.orientation.angle) || 0;
+      let gx = e.gamma, gy = e.beta;
+      if (a === 90) { gx = e.beta; gy = -e.gamma; } else if (a === 270 || a === -90) { gx = -e.beta; gy = e.gamma; }
+      if (!rest) rest = { x: gx, y: gy };
+      rest.x += (gx - rest.x) * 0.01;                    // slowly re-centers
+      rest.y += (gy - rest.y) * 0.01;
+      const c = (v) => Math.max(-1, Math.min(1, v / TILT_MAX));
+      tilt.x = c(gx - rest.x);
+      tilt.y = c(gy - rest.y);
+    });
+  }
+
   // ---------- render loop ----------
   const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -187,11 +236,12 @@
     KEYS.forEach((k, i) => {
       // positions relative to the camera center, y up
       const cx = spline(k.x, s) - cam.x, cy = cam.y - spline(k.y, s), r = spline(k.r, s);
-      let tx = 0, ty = 0;
+      // tilt shifts each sphere by its depth; the touch/mouse push adds on top
+      let tx = tilt.x * TILT_SHIFT * DEPTH[i], ty = -tilt.y * TILT_SHIFT * DEPTH[i];
       if (mouse) {
         const dx = cx - mouse.x, dy = cy - mouse.y, d = Math.hypot(dx, dy) || 1e-4;
-        const f = PUSH * Math.exp(-(d * d) / (2 * (r * 1.1) ** 2));
-        tx = dx / d * f; ty = dy / d * f;
+        const f = push * Math.exp(-(d * d) / (2 * (r * 1.1) ** 2));
+        tx += dx / d * f; ty += dy / d * f;
       }
       offset[i].x += (tx - offset[i].x) * EASE;
       offset[i].y += (ty - offset[i].y) * EASE;
