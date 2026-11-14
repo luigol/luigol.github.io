@@ -164,6 +164,13 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .section { padding: clamp(72px, 9vw, 112px) 0; }
 .sec-head { display: flex; flex-direction: column; gap: 16px; }
 .sec-head h2 { font-size: clamp(30px, 3vw, 40px); line-height: 1.1; }
+/* slide-up words (Spell UI Slide Up Text, MIT): the outer span clips, the
+   inner one starts below it; padding + negative margin keep descenders (g, ç) */
+.slide-word {
+  display: inline-block; overflow: hidden; vertical-align: top;
+  padding-bottom: .15em; margin-bottom: -.15em;
+}
+.slide-word > span { display: inline-block; transform: translateY(110%); }
 
 /* ---------- trilho (entregas e trajetória) ---------- */
 .rail { position: relative; margin-top: clamp(48px, 5vw, 72px); }
@@ -300,6 +307,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes drawY { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes halo { 0% { box-shadow: 0 0 0 0 rgba(194,26,26,.55); } 100% { box-shadow: 0 0 0 18px rgba(194,26,26,0); } }
+@keyframes slide-up { from { transform: translateY(110%); } to { transform: none; } }
 /* one word's slot is 25% of the loop (4 words): enter, hold, leave upwards */
 @keyframes word-cycle {
   0% { opacity: 0; transform: translateY(100%); }
@@ -309,6 +317,9 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 
 .js .reveal { opacity: 0; }
 .is-visible .reveal { animation: rise .9s cubic-bezier(.2,.7,.2,1) var(--d, 0s) both; }
+.is-visible .slide-word > span {
+  animation: slide-up .8s cubic-bezier(.2,.7,.2,1) calc(var(--d, 0s) + .1s + var(--w) * 70ms) both;
+}
 
 .rail__pulse { animation: flow 4s linear infinite; }
 .node--ping { animation: ping 4s linear var(--ping, 0s) infinite; }
@@ -358,4 +369,5 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
   .rail__progress { transform: none; }
   .hero__video video { visibility: hidden; }
   .words > span:first-child { opacity: 1; transform: none; }
+  .slide-word > span { transform: none; }
 }

@@ -3,6 +3,30 @@
   'use strict';
   document.documentElement.classList.add('js');
 
+  // ---------- 0. Section titles: slide-up words ----------
+  // Based on Spell UI Slide Up Text (MIT) - github.com/xxtomm/spell-ui.
+  // Each word goes into a clipping span and rises from below when the
+  // section becomes visible. Screen readers read a hidden full copy.
+  document.querySelectorAll('.sec-head h2').forEach((h2) => {
+    const text = h2.textContent.trim();
+    const words = document.createElement('span');
+    words.setAttribute('aria-hidden', 'true');
+    text.split(/\s+/).forEach((word, i) => {
+      if (i) words.appendChild(document.createTextNode(' '));
+      const clip = document.createElement('span');
+      clip.className = 'slide-word';
+      const inner = document.createElement('span');
+      inner.style.setProperty('--w', i);
+      inner.textContent = word;
+      clip.appendChild(inner);
+      words.appendChild(clip);
+    });
+    const label = document.createElement('span');
+    label.className = 'sr-only';
+    label.textContent = text;
+    h2.replaceChildren(label, words);
+  });
+
   // ---------- 1. Animações ao rolar ----------
   // Cada <section data-animate> ganha .is-visible quando entra na tela;
   // o CSS então dispara as animações dos elementos .reveal dela.
