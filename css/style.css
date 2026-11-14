@@ -209,15 +209,16 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 
 /* ---------- carrossel ---------- */
 .section--marquee { padding-bottom: clamp(72px, 9vw, 88px); }
+/* edge fade with a mask (as in Spell UI Marquee, MIT): it makes the edges
+   transparent instead of painting the page color over them, so it works on
+   any background; the border lines fade out at the edges too */
 .marquee {
+  --fade: clamp(60px, 11vw, 160px);
   position: relative; overflow: hidden; margin-top: 48px;
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+          mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
 }
-.marquee::before, .marquee::after {
-  content: ''; position: absolute; top: 0; bottom: 0; width: clamp(60px, 11vw, 160px); z-index: 1; pointer-events: none;
-}
-.marquee::before { left: 0; background: linear-gradient(to right, var(--bg), rgba(14,14,14,0)); }
-.marquee::after { right: 0; background: linear-gradient(to left, var(--bg), rgba(14,14,14,0)); }
 .marquee__track { display: flex; width: max-content; animation: marquee var(--marquee-duration, 30s) linear infinite; }
 /* pause on hover only with a real pointer: on touch screens :hover sticks
    after a tap or scroll and would freeze the carousel for good */
